@@ -1,0 +1,48 @@
+{
+    "editor.formatOnSave": true,
+    "notebook.formatOnSave.enabled": true,
+    "files.autoSaveWhenNoErrors": true,
+    "editor.defaultFormatter": "Shopify.ruby-lsp",
+    "rubyLsp.enableExperimentalFeatures": true,
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[ruby]": {
+        "editor.defaultFormatter": "Shopify.ruby-lsp"
+    },
+    "rubyLsp.rubyVersionManager": "rvm",
+    "rdbg.saveBreakpoints": true,
+    "workbench.settings.applyToAllProfiles": [
+        "rubyLsp.formatter"
+    ],
+    "rubyLsp.enabledFeatures": {
+        "codeActions": true,
+        "diagnostics": true,
+        "documentHighlights": true,
+        "documentLink": true,
+        "documentSymbols": true,
+        "foldingRanges": true,
+        "formatting": true,
+        "hover": true,
+        "inlayHint": true,
+        "onTypeFormatting": true,
+        "selectionRanges": true,
+        "semanticHighlighting": true,
+        "completion": true,
+        "codeLens": true,
+        "definition": true,
+        "workspaceSymbol": true,
+        "signatureHelp": true
+    },
+    "rubyLsp.formatter": "rubocop",
+    "editor.tabSize": 2,
+    "files.associations": {
+        "*.css": "tailwindcss"
+    },
+    "editor.quickSuggestions": {
+        "strings": "on"
+    },
+    "tailwindCSS.includeLanguages": {
+        "plaintext": "html"
+    }
+}
