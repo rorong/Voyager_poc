@@ -12,14 +12,14 @@ If you finish early You can look into the Bonus Points section for additional ta
 
 ## Configuring Your Environment
 
-> [!NOTE]
-> It is important this repository be publicly accessible so that our team members can review it. If the repository is not publicly accessible, it will not be considered.
-
 1. Clone this repo and push it into a new public repository that can be shared with our team. 
 
     ```
     git clone https://github.com/SSLcom/voyager
     ```
+
+> [!NOTE]
+> It is important this repository be publicly accessible so that our team members can review it. If the repository is not publicly accessible, it will not be considered.
 
 2. Configure and start the support services.
 
@@ -40,16 +40,17 @@ If you finish early You can look into the Bonus Points section for additional ta
     docker compose --env-file .docker/.env up mail-catcher -d
     ```
 
-> [!TIP]
-> This will dump you into a bash session where you can run any shell, rails or rake command. Every command needs to be prefixed with bundle exec.
-
 3. Start the development container.
 
     ```
     docker compose run -it --rm -p 3500:3500 -p 35000:35000 application /bin/bash
     ```
 
+> [!TIP]
+> This will dump you into a bash session where you can run any shell, rails or rake command. Every command needs to be prefixed with bundle exec.
+
 #### Service Access
+You can use the URLs below to access the services.
 
 - You can now access the rails application via http://127.0.0.1:3500
 - You can now access mail catcher via http://127.0.0.1:1080
