@@ -12,10 +12,10 @@ If you finish early You can look into the Bonus Points section for additional ta
 
 ## Configuring Your Environment
 
-1. Clone this repo and push it into a new public repository that can be shared with our team. 
+> [!NOTE]
+> It is important this repository be publicly accessible so that our team members can review it. If the repository is not publicly accessible, it will not be considered.
 
-    > [!NOTE]
-    > It is important this repository be publicly accessible so that our team members can review it. If the repository is not publicly accessible, it will not be considered.
+1. Clone this repo and push it into a new public repository that can be shared with our team. 
 
     ```
     git clone https://github.com/SSLcom/voyager
@@ -40,10 +40,10 @@ If you finish early You can look into the Bonus Points section for additional ta
     docker compose --env-file .docker/.env up mail-catcher -d
     ```
 
-3. Start the development container.
+> [!TIP]
+> This will dump you into a bash session where you can run any shell, rails or rake command. Every command needs to be prefixed with bundle exec.
 
-    > [!TIP]
-    > This will dump you into a bash session where you can run any shell, rails or rake command. Every command needs to be prefixed with bundle exec.
+3. Start the development container.
 
     ```
     docker compose run -it --rm -p 3500:3500 -p 35000:35000 application /bin/bash
