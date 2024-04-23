@@ -51,8 +51,24 @@ docker compose --env-file .docker/.env up mail-catcher -d
 ##### STEP 3: Start the development container
 
 ```
-docker compose run -it --rm -p 3500:3500 -p 35000:35000 application /bin/bash
+docker compose --env-file .docker/.env run -it --rm -p 3500:3500 -p 35000:35000 application /bin/bash
 ```
+
+Once you are in the container on the command line, this fucntions as it does with any rails application.
+
+First you will need to create, migrate and seed the database.
+
+`bundle exec rake db:create`
+`bundle exec rake db:migrate`
+`bundle exec rake db:seed`
+
+You will then need to start the services. We use foreman to run all of the servcies needed for the rails application
+
+`foreman start`
+
+** If you get an error about forman not being installed, you can install it using `gem install foreman`
+
+
 
 <br>
 
