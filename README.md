@@ -66,7 +66,7 @@ You will then need to start the services. We use foreman to run all of the servc
 
 `foreman start`
 
-** If you get an error about forman not being installed, you can install it using `gem install foreman`
+** If you get an error about foreman not being installed, you can install it using `gem install foreman`
 
 
 
