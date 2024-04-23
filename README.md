@@ -54,7 +54,7 @@ docker compose --env-file .docker/.env up mail-catcher -d
 docker compose --env-file .docker/.env run -it --rm -p 3500:3500 -p 35000:35000 application /bin/bash
 ```
 
-Once you are in the container on the command line, this fucntions as it does with any rails application.
+Once you are in the container on the command line, this functions as it does with any rails application.
 
 First you will need to create, migrate and seed the database.
 
