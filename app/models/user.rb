@@ -9,7 +9,6 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true
 
   # associations
-  belongs_to :role, dependent: :destroy
   has_one_attached :avatar
 
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_24_122426) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_24_135910) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -49,6 +49,31 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_24_122426) do
     t.index ["users_id"], name: "index_roles_on_users_id"
   end
 
+  create_table "team_users", force: :cascade do |t|
+    t.bigint "users_id", null: false
+    t.bigint "teams_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["teams_id"], name: "index_team_users_on_teams_id"
+    t.index ["users_id"], name: "index_team_users_on_users_id"
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.bigint "users_id", null: false
+    t.string "name", default: "", null: false
+    t.text "description", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["users_id"], name: "index_teams_on_users_id"
+  end
+
+  create_table "user_roles", force: :cascade do |t|
+    t.bigint "users_id", null: false
+    t.bigint "roles_id", null: false
+    t.index ["roles_id"], name: "index_user_roles_on_roles_id"
+    t.index ["users_id"], name: "index_user_roles_on_users_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -60,15 +85,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_24_122426) do
     t.string "username", limit: 50, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "role_id", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["role_id"], name: "index_users_on_role_id"
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "roles", "users", column: "users_id"
-  add_foreign_key "users", "roles"
+  add_foreign_key "team_users", "teams", column: "teams_id"
+  add_foreign_key "team_users", "users", column: "users_id"
+  add_foreign_key "teams", "users", column: "users_id"
+  add_foreign_key "user_roles", "roles", column: "roles_id"
+  add_foreign_key "user_roles", "users", column: "users_id"
 end
