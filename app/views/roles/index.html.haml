@@ -1,0 +1,15 @@
+.container.mx-auto.py-8
+  .flex.justify-between.mb-6
+    %h2.text-2xl.font-semibold Roles
+    = link_to 'Add Role', new_role_path, class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
+
+  .grid.grid-cols-1.gap-6.mb-6
+    - @roles.each do |role|
+      - unless role.id == 1
+        .bg-white.shadow-md.rounded-md.overflow-hidden
+          .p-6
+            .flex.justify-between.items-center
+              %p.font-semibold= role.name
+              .flex.items-center.space-x-4
+                = link_to 'Edit', edit_role_path(role), class: 'text-indigo-600 hover:text-indigo-900'
+                = link_to 'Delete', role_path(role), data: { turbo_method: :delete }, class: 'text-red-600 hover:text-red-900'

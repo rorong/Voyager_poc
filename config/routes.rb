@@ -13,4 +13,8 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root to: "dashboards#index"
   resources :roles
+  resources :teams do
+    resources :team_users, only: [:create]
+  end
+  resources :users
 end

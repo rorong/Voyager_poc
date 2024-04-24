@@ -24,10 +24,15 @@ group :development, :test do
   gem "bundler-leak"
   gem "bundler-audit"
   gem "brakeman"
+
+  # for test cases
+  gem 'rspec-rails', '~> 6.1.0'
+  gem 'rails-controller-testing'
 end
 
 group :development do
   gem "web-console"
 end
 
+# for user authorization
 gem "devise", "~> 4.9"

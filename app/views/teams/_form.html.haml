@@ -1,0 +1,23 @@
+= form_for(team) do |f|
+  - if team.errors.any?
+    .bg-red-100.border-l-4.border-red-500.text-red-700.p-4.my-4.rounded-sm
+      %p
+        = pluralize(team.errors.count, "error")
+        = 'prohibited'
+        this team from being saved:
+      %ul
+        - team.errors.full_messages.each do |message|
+          %li= message
+
+  .mb-4
+    = f.label :name, class: 'block text-gray-700 text-sm font-bold mb-2'
+    = f.text_field :name, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+
+  .mb-6
+    = f.label :description, class: 'block text-gray-700 text-sm font-bold mb-2'
+    = f.text_area :description, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+    = f.hidden_field :user_id, value: current_user.id
+
+  .flex.items-center.space-x-4
+    = f.submit 'Save', class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+    = link_to 'Cancel', teams_path, class: 'bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'

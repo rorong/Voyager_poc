@@ -26,8 +26,8 @@
             .flex.space-x-4
               / Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white"
               %a.bg-gray-900.text-white.rounded-md.px-3.py-2.text-sm.font-medium{"aria-current" => "page", :href => "#"} Dashboard
-              %a.text-gray-300.hover:bg-gray-700.hover:text-white.rounded-md.px-3.py-2.text-sm.font-medium{:href => "#"} Team
-              %a.text-gray-300.hover:bg-gray-700.hover:text-white.rounded-md.px-3.py-2.text-sm.font-medium{:href => "#"} Users
+              %a.text-gray-300.hover:bg-gray-700.hover:text-white.rounded-md.px-3.py-2.text-sm.font-medium{:href => "teams"} Team
+              %a.text-gray-300.hover:bg-gray-700.hover:text-white.rounded-md.px-3.py-2.text-sm.font-medium{:href => "/users"} Users
               %a.text-gray-300.hover:bg-gray-700.hover:text-white.rounded-md.px-3.py-2.text-sm.font-medium{:href => "/roles"} Roles
         .absolute.inset-y-0.right-0.flex.items-center.pr-2.sm:static.sm:inset-auto.sm:ml-6.sm:pr-0
           %button.relative.rounded-full.bg-gray-800.p-1.text-gray-400.hover:text-white.focus:outline-none.focus:ring-2.focus:ring-white.focus:ring-offset-2.focus:ring-offset-gray-800{:type => "button"}
@@ -54,7 +54,7 @@
               Leaving: "transition ease-in duration-75"
               From: "transform opacity-100 scale-100"
               To: "transform opacity-0 scale-95"
-            .absolute.right-0.z-10.mt-2.w-48.origin-top-right.rounded-md.bg-white.py-1.shadow-lg.ring-1.ring-black.ring-opacity-5.focus:outline-none{"aria-labelledby" => "user-menu-button", "aria-orientation" => "vertical", :role => "menu", :tabindex => "-1"}
+            .absolute.right-0.z-10.mt-2.w-48.origin-top-right.rounded-md.bg-white.py-1.shadow-lg.ring-1.ring-black.ring-opacity-5.focus:outline-none{"aria-labelledby" => "user-menu-button", "aria-orientation" => "vertical", :role => "menu", :tabindex => "-1", id: 'user-menu'}
               / Active: "bg-gray-100", Not Active: ""
               %a#user-menu-item-0.block.px-4.py-2.text-sm.text-gray-700{:href => "/users/edit", :role => "menuitem", :tabindex => "-1"} Your Profile
               %a#user-menu-item-1.block.px-4.py-2.text-sm.text-gray-700{:href => "#", :role => "menuitem", :tabindex => "-1"} Settings
@@ -70,4 +70,7 @@
 
 
 - else
-  %h2 Hey! Do you want to connect with us
+  .div{ class: "bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" }
+    .flex.items-center.justify-center
+      %h2 
+        Hello! Do you want to connect with us

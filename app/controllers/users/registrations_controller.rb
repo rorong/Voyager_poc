@@ -12,6 +12,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     super do |resource|
+      UserRole.create(user_id: resource.id, role_id: 1)
       if resource.errors.any?
         flash[:alert] = resource.errors.full_messages.join(", ")
         redirect_to root_path and return
