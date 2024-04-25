@@ -25,9 +25,24 @@ group :development, :test do
   gem "bundler-audit"
   gem "brakeman"
 
-  # for test cases
-  gem 'rspec-rails', '~> 6.1.0'
-  gem 'rails-controller-testing'
+  gem "rspec-rails"
+  gem "factory_bot_rails"
+  gem "faker"
+  gem "database_cleaner"
+  gem "capybara-email"
+  gem "database_cleaner-active_record"
+  gem "dotenv-rails"
+  gem "rails-controller-testing"
+end
+
+group :test do
+  # Adds support for Capybara system testing and selenium driver
+  gem "capybara", ">= 3.26"
+  gem "selenium-webdriver"
+  # Easy installation and use of web drivers to run system tests with browsers
+  gem "webdrivers"
+  gem "super_diff"
+  gem "simplecov", require: false
 end
 
 group :development do

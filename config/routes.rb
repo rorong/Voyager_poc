@@ -16,6 +16,6 @@ Rails.application.routes.draw do
   resources :teams do
     resources :team_users, only: [:create]
   end
-  resources :users, path: 'admin_user' # Rename the conflicting route to 'admin_user'
+  resources :users, path: "admin_user" # Rename the conflicting route to 'admin_user'
   resources :add_member_in_teams, only: [:create]
 end

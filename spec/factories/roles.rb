@@ -1,7 +1,9 @@
 # spec/factories/roles.rb
+
 FactoryBot.define do
   factory :role do
-    name { Faker::Lorem.word }
-    description { Faker::Lorem.sentence }
+    name { "Test Role" }
+    description { "testing" }
+    user_id { 1 }
   end
 end

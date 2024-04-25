@@ -6,10 +6,10 @@ class RolesController < ApplicationController
 
   # GET /roles
   def index
-    if UserRole.find_by(user_id: current_user.id, role_id: 1)
-      @roles = Role.all
+    @roles = if UserRole.find_by(user_id: current_user.id, role_id: 1)
+      Role.all
     else
-      @roles = current_user.owned_roles
+      current_user.owned_roles
     end
   end
 

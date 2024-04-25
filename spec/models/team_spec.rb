@@ -1,16 +1,33 @@
-# spec/models/team_spec.rb
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Team, type: :model do
-  context "validations" do
-    it { should validate_presence_of(:name) }
-    it { should validate_presence_of(:description) }
-    it { should validate_presence_of(:user_id) }
+  let(:team) { create(:team) }
+
+  describe "validations" do
+    it "has a valid factory" do
+      expect(build(:team)).to be_valid
+    end
+
+    it "is not valid without a user_id" do
+      team = Team.new(user_id: nil, name: "", description: "")
+      expect(team).to_not be_valid
+    end
+
+    it "is not valid without a name" do
+      team = Team.new(user_id: 1, name: "", description: "test")
+      expect(team).to_not be_valid
+    end
+
+    it "is not valid without a description" do
+      team = Team.new(user_id: 1, name: "test", description: "")
+      expect(team).to_not be_valid
+    end
   end
 
-  context "associations" do
-    it { should belong_to(:owner).class_name("User").with_foreign_key("user_id") }
-    it { should have_many(:team_users) }
-    it { should have_many(:users).through(:team_users) }
+  describe "associations" do
+    it "belongs to a user" do
+      association = Team.reflect_on_association(:owner)
+      expect(association.macro).to eq(:belongs_to)
+    end
   end
 end

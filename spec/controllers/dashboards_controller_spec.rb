@@ -1,5 +1,5 @@
 # spec/controllers/dashboards_controller_spec.rb
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe DashboardsController, type: :controller do
   describe "GET #index" do

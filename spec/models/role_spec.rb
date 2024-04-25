@@ -1,16 +1,33 @@
-# # spec/models/role_spec.rb
-# require 'rails_helper'
+require "rails_helper"
 
-# RSpec.describe Role, type: :model do
-#   context "validations" do
-#     it { should validate_presence_of(:name) }
-#     it { should validate_presence_of(:description) }
-#     it { should validate_presence_of(:user_id) }
-#   end
+RSpec.describe Role, type: :model do
+  let(:role) { create(:role) }
 
-#   context "associations" do
-#     it { should belong_to(:owner).class_name("User").with_foreign_key("user_id") }
-#     it { should have_many(:user_roles) }
-#     it { should have_many(:users).through(:user_roles) }
-#   end
-# end
+  describe "validations" do
+    it "has a valid factory" do
+      expect(build(:role)).to be_valid
+    end
+
+    it "is not valid without a user_id" do
+      role = Role.new(user_id: nil, name: "", description: "")
+      expect(role).to_not be_valid
+    end
+
+    it "is not valid without a name" do
+      role = Role.new(user_id: 1, name: "", description: "test")
+      expect(role).to_not be_valid
+    end
+
+    it "is not valid without a description" do
+      role = Role.new(user_id: 1, name: "test", description: "")
+      expect(role).to_not be_valid
+    end
+  end
+
+  describe "associations" do
+    it "belongs to a user" do
+      association = Role.reflect_on_association(:owner)
+      expect(association.macro).to eq(:belongs_to)
+    end
+  end
+end

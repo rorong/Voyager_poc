@@ -2,7 +2,7 @@
 
 # controller for handling users functionalities
 class UsersController < ApplicationController
-	before_action :set_user, only: %i[edit update destroy show]
+  before_action :set_user, only: %i[edit update destroy show]
 
   # GET /users
   def index

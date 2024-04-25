@@ -6,10 +6,10 @@ class TeamsController < ApplicationController
 
   # GET /teams
   def index
-    if current_user.id == 1
-      @teams = Team.all
+    @teams = if current_user.id == 1
+      Team.all
     else
-      @teams = current_user.owned_teams
+      current_user.owned_teams
     end
   end
 

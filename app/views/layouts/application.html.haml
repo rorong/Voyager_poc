@@ -9,9 +9,8 @@
     = stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload"
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_importmap_tags
-    %script{src: "https://cdn.jsdelivr.net/gh/alpinejs/alpine@v3.7.0/dist/alpine.js", defer: true}
-  %body
     %script{src: "https://unpkg.com/@themesberg/flowbite@latest/dist/flowbite.bundle.js"}
+  %body
     = render 'layouts/header'
     .notice= notice
     .alert= alert
