@@ -1,14 +1,33 @@
 %h1= @team.name
 
-- if @team.users.any?
-  %h2 Team Members
-  %ul
-    - @team.users.each do |user|
-      %li= "#{user.name} - #{user.teams.find_by(teams_id: @team.id).role}"
+%h2 Team Members
+- if @members.any?
+  %table.border.border-gray-800
+    %thead
+      %tr.bg-gray-200.text-gray-700.font-semibold
+        %th.px-4.py-2 User
+        %th.px-4.py-2 Role
+    %tbody
+    - @members.each do |member|
+      %tr.border-b.border-gray-300
+        %td.px-4.py-2= "#{member.user.first_name} #{member.user.last_name}"
+        %td.px-4.py-2= "#{member.role.name}"
 
-%h2 Add User
-= form_with(url: team_team_users_path(@team), method: :post) do |form|
-  = form.collection_select(:user_id, User.all, :id, :first_name, {}, { multiple: true })
-  - roles = current_user.owned_roles.pluck(:name)
-  = form.select :role, options_for_select(roles), {}
-  = form.submit 'Add User'
+
+%h2.text-2xl.font-semibold.mb-4 Add User
+
+= form_with(model: @add_member_in_team, url: add_member_in_teams_path, method: :post, class: "w-full max-w-md") do |form|
+  .mb-4
+    = form.label :user_id, "Select User(s)", class: "block text-gray-700 text-sm font-bold mb-2"
+    = form.collection_select :user_id, User.where.not(id: 1), :id, :first_name, { class: "form-multiselect w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-blue-500" }
+  .mb-4
+    = form.hidden_field :team_id, value: params[:id]
+  - if current_user.id == 1
+    - roles = Role.where.not(id: 1)
+  - else
+    - roles = current_user.owned_roles
+  .mb-4
+    = form.label :role_id, "Select Role", class: "block text-gray-700 text-sm font-bold mb-2"
+    = form.select :role_id, options_for_select(roles.map { |role| [role.name, role.id] }), class: "form-select w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-blue-500"
+  .mb-6
+    = form.submit 'Add User', class: "w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline"

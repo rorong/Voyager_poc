@@ -8,8 +8,6 @@ class UsersController < ApplicationController
   def index
     if UserRole.find_by(user_id: current_user.id, role_id: 1)
       @users = User.all
-    else
-      @users = current_user.owned_users
     end
   end
 
@@ -61,6 +59,7 @@ class UsersController < ApplicationController
 
   # permit params
   def user_params
-    params.require(:user).permit(:name, :description, :user_id)
+    params.require(:user).permit(:first_name, :last_name, :username,
+      :email, :password, :password_confirmation)
   end
 end

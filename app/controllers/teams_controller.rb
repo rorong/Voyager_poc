@@ -6,7 +6,7 @@ class TeamsController < ApplicationController
 
   # GET /teams
   def index
-    if UserRole.find_by(user_id: current_user.id, role_id: 1)
+    if current_user.id == 1
       @teams = Team.all
     else
       @teams = current_user.owned_teams
@@ -44,6 +44,8 @@ class TeamsController < ApplicationController
 
   # GET /teams/:id
   def show
+    @add_member_in_team = AddMemberInTeam.new
+    @members = AddMemberInTeam.where(team_id: params[:id])
   end
 
   # DELETE /teams/:id

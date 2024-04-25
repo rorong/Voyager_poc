@@ -9,6 +9,8 @@ class User < ApplicationRecord
   # validations
   validates :username, presence: true, uniqueness: true, format: {with: /\A\w+\z/, message: "can only contain alpha-numeric characters"}
   validates :email, presence: true, uniqueness: true
+  validates :first_name, presence: true
+  validates :last_name, presence: true
 
   # associations
   has_one_attached :avatar

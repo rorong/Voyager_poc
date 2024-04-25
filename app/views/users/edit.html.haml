@@ -1,0 +1,53 @@
+.row
+  .col-lg-12
+    .card.bg-white.shadow-md.rounded-lg.overflow-hidden
+      .card-header.bg-gray-200.py-3
+        %h4.card-title.title-text.text-lg.font-semibold Edit User
+      .card-body.p-4
+        .form-validation
+          = form_for @user, url: user_path(@user), method: :patch, html: { class: "row g-3" } do |f|
+            .col-xl-10
+              .form-group.row
+                %label.col-lg-4.col-form-label.text-sm.font-semibold
+                  First Name
+                  %span.text-danger.ml-1 *
+                .col-lg-6
+                  = f.text_field :first_name, class: %i[form-control rounded-md], required: true
+              .form-group.row
+                %label.col-lg-4.col-form-label.text-sm.font-semibold
+                  Last Name
+                  %span.text-danger.ml-1 *
+                .col-lg-6
+                  = f.text_field :last_name, class: %i[form-control rounded-md], required: true
+              .form-group.row
+                %label.col-lg-4.col-form-label.text-sm.font-semibold
+                  Username
+                  %span.text-danger.ml-1 *
+                .col-lg-6
+                  = f.text_field :username, class: %i[form-control rounded-md], required: true
+              .form-group.row
+                %label.col-lg-4.col-form-label.text-sm.font-semibold
+                  Email
+                  %span.text-danger.ml-1 *
+                .col-lg-6
+                  = f.text_field :email, class: %i[form-control rounded-md], required: true
+              .form-group.row
+                %label.col-lg-4.col-form-label.text-sm.font-semibold
+                  Password
+                  %span.text-danger.ml-1 *
+                .col-lg-6
+                  = f.text_field :password, class: %i[form-control rounded-md], type: 'password', required: true
+              .form-group.row
+                %label.col-lg-4.col-form-label.text-sm.font-semibold
+                  Password Confirmation
+                  %span.text-danger.ml-1 *
+                .col-lg-6
+                  = f.text_field :password_confirmation, class: %i[form-control rounded-md], type: 'password', required: true
+              .form-group.row
+                .col-lg-8.ml-auto
+                  = f.submit "Update", data: { turbo: false }, class: %i[btn btn-primary confirmation-btn mr-2 rounded-md] do
+                    %span.btn-icon-right
+                      %i.fa-solid.fa-check
+/                  = link_to "Cancel", users_path, data: { turbo: false }, class: %i[btn btn-secondary cancel_btn rounded-md] do
+/                   %span.btn-icon-right
+/                     %i.fa-solid.fa-x

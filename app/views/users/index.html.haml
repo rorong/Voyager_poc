@@ -1,15 +1,16 @@
 .container.mx-auto.py-8
   .flex.justify-between.mb-6
     %h2.text-2xl.font-semibold Users
-    = link_to 'Add User', new_user_path, class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
+    - if current_user && current_user.id == 1
+      = link_to 'Add User', new_user_path, class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
 
-  / .grid.grid-cols-1.gap-6.mb-6
-  /   - @users.each_with_index do |team, index|
-  /     .bg-white.shadow-md.rounded-md.overflow-hidden
-  /       .p-6
-  /         .flex.justify-between.items-center
-  /           %p.font-semibold= team.name
-  /           .flex.items-center.space-x-4
-  /             = link_to 'Show', team_path(team), class: 'text-indigo-600 hover:text-indigo-900'
-  /             = link_to 'Edit', edit_team_path(team), class: 'text-indigo-600 hover:text-indigo-900'
-  /             = link_to 'Delete', team_path(team), data: { turbo_method: :delete }, class: 'text-red-600 hover:text-red-900'
+.grid.grid-cols-1.gap-6.mb-6
+  - @users.each_with_index do |user, index|
+    -unless index.zero?
+      .bg-white.shadow-md.rounded-md.overflow-hidden
+        .p-6
+          .flex.justify-between.items-center
+            %p.font-semibold= user.first_name
+            .flex.items-center.space-x-4
+              = link_to 'Edit', edit_user_path(user), class: 'text-indigo-600 hover:text-indigo-900'
+              = link_to 'Delete', user_path(user), data: { turbo_method: :delete }, class: 'text-red-600 hover:text-red-900'
